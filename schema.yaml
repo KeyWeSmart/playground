@@ -1,0 +1,565 @@
+openapi: 3.0.0
+info:
+  title: dave service nodejs
+  version: 1.0.0
+servers:
+  - url: http://{{host}}
+  - url: http://localhost:5051
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    apikeyAuth:
+      type: http
+      scheme: apikey
+security:
+  - apikeyAuth: []
+paths:
+  /account/jwt:
+    get:
+      tags:
+        - default
+      summary: /account/jwt
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /account:
+    put:
+      tags:
+        - default
+      summary: /account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                password: Lio84xK6FBJ0ijW
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /install/ses:
+    get:
+      tags:
+        - default
+      summary: /install/ses
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: groupcode
+          in: query
+          schema:
+            type: string
+          example: abcdef4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      summary: /install/ses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                bleMac: 4823350BDE34
+                floorLv: 4
+                fwVer: 1.0.0
+                iBeaconUUID: C64431B8-63DC-11EC-90D6-0242AC130054
+                memo: ''
+                model: GKSES-2000
+                secretKey: N1M0NUxRenVIV3hQT0d0S3dnd1I4b3RYVStkRUNkaXdmUllSWDl0OCtUST0=
+                serialNo: SES20000
+                sesId: AAAAAAAAAAAAAAAAAAAAAQ
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - default
+      summary: /install/ses
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v2/install/ses:
+    put:
+      tags:
+        - default
+      summary: /v2/install/ses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                bleMac: 4823350BDE34
+                floorLv: 4
+                fwVer: 1.0.0
+                iBeaconUUID: C64431B8-63DC-11EC-90D6-0242AC130054
+                memo: ''
+                model: GKSES-2000
+                secretKey: N1M0NUxRenVIV3hQT0d0S3dnd1I4b3RYVStkRUNkaXdmUllSWDl0OCtUST0=
+                serialNo: ZES20000
+                sesId: C7nM_nXAAABM67eYW_85FA
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /install/ses/enc-key:
+    get:
+      tags:
+        - default
+      summary: /install/ses/test-onetime-key
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: mac
+          in: query
+          schema:
+            type: string
+          example: AABBCCDDEE23
+        - name: serial
+          in: query
+          schema:
+            type: string
+          example: a2CD0000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /install/ses/firmware-info:
+    get:
+      tags:
+        - default
+      summary: /install/ses/firmware-info
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses:
+    post:
+      tags:
+        - default
+      summary: /ses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                groupId: 103
+                items:
+                  - name: '101'
+                    sesType: 0
+                  - name: '102'
+                    sesType: 0
+                  - name: '103'
+                    sesType: 0
+                  - name: gym
+                    sesType: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: /ses
+      parameters:
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+        - name: groupid
+          in: query
+          schema:
+            type: integer
+          example: '2'
+        - name: serialno
+          in: query
+          schema:
+            type: string
+          example: serial number2
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: name2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/user:
+    post:
+      tags:
+        - default
+      summary: /ses/user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                keyId: a309cc04-9a79-46ae-8f8d-39e9e9820eb6
+                propName: Q
+                sesId: ChYLC1WAAABZP-gWzK35bA
+                userId: 637c5bc5c6a3af737019a711
+                userName: QaTest
+                userPhoneNo: '+821027366937'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: /ses/user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      summary: /ses/user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: ttttest
+                sesId: CpOWn7qAAADRXUdA2YupVA
+                state: ok
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - default
+      summary: /ses/user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/guest:
+    post:
+      tags:
+        - default
+      summary: /ses/guest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                guestKeyId: ttttestgggg
+                keyId: testetst
+                guestId: testetst
+                guestUserName: 3341aa
+                validFr: 1668074294
+                validTo: 1668081503
+                guestAuth: 8210dd47475757
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      summary: /ses/guest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                guestKeyId: ttttestgggg
+                validFr: 1668117494
+                validTo: 1668113903
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - default
+      summary: /ses/guest
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/group:
+    post:
+      tags:
+        - default
+      summary: /ses/group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: 테스
+                countryCode: MY
+                addr1: null
+                addr2: null
+                groupType: 0
+                gpsLat: 0
+                gpsLong: 0
+                autoApproveType: 0
+                elvType: 0
+                hometownType: 0
+                household: 311
+                customAddr: 테테테테테
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: /ses/group
+      parameters:
+        - name: group-id
+          in: query
+          schema:
+            type: integer
+          example: '2'
+        - name: country-code
+          in: query
+          schema:
+            type: string
+          example: KR
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: '0'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '100'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/group/aptinfo:
+    get:
+      tags:
+        - default
+      summary: /ses/group/aptinfo
+      parameters:
+        - name: apcode
+          in: query
+          schema:
+            type: string
+          example: A10026371
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/group/address-list:
+    get:
+      tags:
+        - default
+      summary: /ses/group/address-list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/one-time-key:
+    get:
+      tags:
+        - default
+      summary: /ses/one-time-key
+      parameters:
+        - name: UserAuthorization
+          in: header
+          schema:
+            type: string
+          example: 262d79aa-fa72-41da-ab59-ed6596e48932
+        - name: keyring-id
+          in: query
+          schema:
+            type: string
+          example: testetst
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/one-time-key-tmp:
+    get:
+      tags:
+        - default
+      summary: /ses/one-time-key-tmp
+      parameters:
+        - name: UserAuthorization
+          in: header
+          schema:
+            type: string
+          example: 262d79aa-fa72-41da-ab59-ed6596e48932
+        - name: keyring-id
+          in: query
+          schema:
+            type: string
+          example: 17c9bdae-60f2-4421-ac01-5200b8abc466
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/one-time-key-guest:
+    get:
+      tags:
+        - default
+      summary: /ses/one-time-key-guest
+      parameters:
+        - name: UserAuthorization
+          in: header
+          schema:
+            type: string
+          example: hNUu4t+uI0i6siwNEqE9mub2OgMgBmfKNIglDweT6Dw=
+        - name: guest-key-id
+          in: query
+          schema:
+            type: string
+          example: 00074aa393b9b21295d47904d57081c18bbf82c5f1b15f1abfce99efa390fa0a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/one-time-key-guest-tmp:
+    get:
+      tags:
+        - default
+      summary: /ses/one-time-key-guest-tmp
+      parameters:
+        - name: UserAuthorization
+          in: header
+          schema:
+            type: string
+          example: hNUu4t+uI0i6siwNEqE9mub2OgMgBmfKNIglDweT6Dw=
+        - name: guest-key-id
+          in: query
+          schema:
+            type: string
+          example: 00074aa393b9b21295d47904d57081c18bbf82c5f1b15f1abfce99efa390fa0a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/result:
+    post:
+      tags:
+        - default
+      summary: /ses/result
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: 634791067c852860d915e670
+                groupId: 45
+                sesId: C1ZRI0_AAAAxcKZD8zgRMQ
+                sesSerialNo: 22CA0080
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ses/log/guest:
+    post:
+      tags:
+        - default
+      summary: /ses/log/guest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                logs:
+                  - hostKeyId: testetst
+                    sesId: CFJxGzgbDwU3ePOhInZisA
+                    guestId: '0'
+                    guestName: nnnn
+                    validFrom: '2022-11-16T05:24:57.642Z'
+                    validTo: '2022-11-16T05:24:57.642Z'
+                    action: 0
+                    actionTime: '2022-11-16T05:24:59.642Z'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /coin/tmp-info:
+    get:
+      tags:
+        - default
+      summary: /coin/tmp-info Copy
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /attendance:
+    get:
+      tags:
+        - default
+      summary: /coin/tmp-info Copy 4
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
